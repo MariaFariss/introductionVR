@@ -50,7 +50,7 @@ public class GhoulScript : MonoBehaviour
             animations.Play("Walk");
             transform.Translate(Vector3.right * Time.deltaTime * 5);
         }
-        else if (Keyboard.current.spaceKey.IsPressed())
+        else if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             animations.Play("Death");
             Destroy(gameObject, 1f);
@@ -67,6 +67,8 @@ public class GhoulScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+        animations.Play("Death");
+        Debug.Log("Collision");
+        Destroy(gameObject, 1f);
     }
 }
