@@ -17,9 +17,10 @@ public class FireBlletOnValidate : MonoBehaviour
 
     public void FireBullet(ActivateEventArgs arg)
     {
-        GameObject spawneBullet = Instantiate(bullet);
-        spawneBullet.GetComponent<Rigidbody>().velocity = SpawnPoint.forward * fireSpeed;
-        Destroy(spawneBullet, 5);
+        GameObject spawnedBullet = Instantiate(bullet);
+        spawnedBullet.transform.position = SpawnPoint.position;
+        spawnedBullet.GetComponent<Rigidbody>().velocity = SpawnPoint.forward * fireSpeed;
+        Destroy(spawnedBullet, 5);
     }
 
     // Update is called once per frame
