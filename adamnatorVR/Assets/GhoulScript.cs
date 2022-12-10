@@ -18,51 +18,74 @@ public class GhoulScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Vector3 mousePosition = Mouse.current.position.ReadValue();
-            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log(hit.transform.name);
-                animations.Play("Death");
-                Destroy(gameObject, 1f);
-            }
-        }
-        if (Keyboard.current.wKey.IsPressed())
+        int alea = Random.Range(0, 4);
+
+        if (alea == 0)
         {
             animations.Play("Walk");
             transform.Translate(Vector3.forward * Time.deltaTime * 5);
         }
-        else if (Keyboard.current.sKey.IsPressed())
+        else if (alea == 1)
         {
             animations.Play("Walk");
             transform.Translate(Vector3.back * Time.deltaTime * 5);
         }
-        else if (Keyboard.current.aKey.IsPressed())
+        else if (alea == 2)
         {
             animations.Play("Walk");
             transform.Translate(Vector3.left * Time.deltaTime * 5);
         }
-        else if (Keyboard.current.dKey.IsPressed())
+        else if (alea == 3)
         {
             animations.Play("Walk");
             transform.Translate(Vector3.right * Time.deltaTime * 5);
         }
-        else if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            animations.Play("Death");
-            Destroy(gameObject, 1f);
-        }
-        else if (Keyboard.current.pKey.IsPressed())
-        {
-            animations.Play("Attack1");
-        }
-        else
-        {
-            animations.Play("Idle");
-        }
+
+        //if (Mouse.current.leftButton.wasPressedThisFrame)
+        //{
+        //    Vector3 mousePosition = Mouse.current.position.ReadValue();
+        //    Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        Debug.Log(hit.transform.name);
+        //        animations.Play("Death");
+        //        Destroy(gameObject, 1f);
+        //    }
+        //}
+        //if (Keyboard.current.wKey.IsPressed())
+        //{
+        //    animations.Play("Walk");
+        //    transform.Translate(Vector3.forward * Time.deltaTime * 5);
+        //}
+        //else if (Keyboard.current.sKey.IsPressed())
+        //{
+        //    animations.Play("Walk");
+        //    transform.Translate(Vector3.back * Time.deltaTime * 5);
+        //}
+        //else if (Keyboard.current.aKey.IsPressed())
+        //{
+        //    animations.Play("Walk");
+        //    transform.Translate(Vector3.left * Time.deltaTime * 5);
+        //}
+        //else if (Keyboard.current.dKey.IsPressed())
+        //{
+        //    animations.Play("Walk");
+        //    transform.Translate(Vector3.right * Time.deltaTime * 5);
+        //}
+        //else if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //{
+        //    animations.Play("Death");
+        //    Destroy(gameObject, 1f);
+        //}
+        //else if (Keyboard.current.pKey.IsPressed())
+        //{
+        //    animations.Play("Attack1");
+        //}
+        //else
+        //{
+        //    animations.Play("Idle");
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
