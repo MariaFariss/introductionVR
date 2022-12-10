@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class GhoulScript : MonoBehaviour
 {
     private Animation animations;
     private BoxCollider boxCollider;
+    private int distance = 5;
+    private RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -18,80 +21,25 @@ public class GhoulScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int alea = Random.Range(0, 4);
+        transform.Translate(Vector3.forward * Time.deltaTime * distance);
 
-        if (alea == 0)
-        {
-            animations.Play("Walk");
-            transform.Translate(Vector3.forward * Time.deltaTime * 5);
-        }
-        else if (alea == 1)
-        {
-            animations.Play("Walk");
-            transform.Translate(Vector3.back * Time.deltaTime * 5);
-        }
-        else if (alea == 2)
-        {
-            animations.Play("Walk");
-            transform.Translate(Vector3.left * Time.deltaTime * 5);
-        }
-        else if (alea == 3)
-        {
-            animations.Play("Walk");
-            transform.Translate(Vector3.right * Time.deltaTime * 5);
-        }
 
-        //if (Mouse.current.leftButton.wasPressedThisFrame)
-        //{
-        //    Vector3 mousePosition = Mouse.current.position.ReadValue();
-        //    Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        //    RaycastHit hit;
-        //    if (Physics.Raycast(ray, out hit))
-        //    {
-        //        Debug.Log(hit.transform.name);
-        //        animations.Play("Death");
-        //        Destroy(gameObject, 1f);
-        //    }
-        //}
-        //if (Keyboard.current.wKey.IsPressed())
-        //{
-        //    animations.Play("Walk");
-        //    transform.Translate(Vector3.forward * Time.deltaTime * 5);
-        //}
-        //else if (Keyboard.current.sKey.IsPressed())
-        //{
-        //    animations.Play("Walk");
-        //    transform.Translate(Vector3.back * Time.deltaTime * 5);
-        //}
-        //else if (Keyboard.current.aKey.IsPressed())
-        //{
-        //    animations.Play("Walk");
-        //    transform.Translate(Vector3.left * Time.deltaTime * 5);
-        //}
-        //else if (Keyboard.current.dKey.IsPressed())
-        //{
-        //    animations.Play("Walk");
-        //    transform.Translate(Vector3.right * Time.deltaTime * 5);
-        //}
-        //else if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        //{
-        //    animations.Play("Death");
-        //    Destroy(gameObject, 1f);
-        //}
-        //else if (Keyboard.current.pKey.IsPressed())
-        //{
-        //    animations.Play("Attack1");
-        //}
-        //else
-        //{
-        //    animations.Play("Idle");
-        //}
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2))
+        {
+            transform.Rotate(Vector3.up * Random.Range(90, 180));
+            Debug.Log("Hit");
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                Debug.Log("Player");
+                animations.Play("Attack1");
+            }
+            else
+            {
+                animations.Play("Run");
+            }
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        animations.Play("Death");
-        Debug.Log("Collision");
-        Destroy(gameObject, 1f);
-    }
+
+
 }
