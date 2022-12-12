@@ -24,7 +24,7 @@ public class GhoulScript : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * distance);
 
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 4))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2))
         {
             transform.Rotate(Vector3.up * Random.Range(90, 180));
             Debug.Log("Hit");
@@ -39,8 +39,6 @@ public class GhoulScript : MonoBehaviour
             }
         }
     }
-
-
 
 
 
