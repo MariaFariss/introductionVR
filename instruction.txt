@@ -1,0 +1,7 @@
+Exécution :
+
+Télécharger l'exécutable, brancher le casque et activer oculus link.
+
+Comment jouer ?
+
+Sur la scène d'accueil, cliquer sur la gachette en pointant sur start. Une fois dans le manoir, saisir le pistolet et tirer sur les ghouls en appuyant sur la gachette.
