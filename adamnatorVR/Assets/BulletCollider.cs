@@ -28,11 +28,13 @@ public class BulletCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
+            Debug.Log("Hit");
             pv -= 20;
             if (pv <= 0)
             {
                 animations.Play("Death");
                 Destroy(parent, 0.5f);
+                Destroy(other, 0f);
             }
 
         }

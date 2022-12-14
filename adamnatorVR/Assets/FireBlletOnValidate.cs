@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class FireBlletOnValidate : MonoBehaviour
 {
+    public GameObject toIgnore;
     public GameObject bullet;
     public Transform SpawnPoint;
     public float fireSpeed = 20;
